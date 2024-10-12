@@ -51,7 +51,8 @@ def get_dataset(batch_sizes,data="tamil"):
     train_loader, val_loader = get_train_test_dataset(batch_sizes, dataset)
     return dataset, train_loader, val_loader
 
-base_dir = 'dataset'
+current_dir = os.path.dirname(__file__)
+base_dir = os.path.join(current_dir, 'dataset')
 male_file_path = os.path.join(base_dir, 'tamil_males.txt')
 female_file_path = os.path.join(base_dir, 'female_names.txt')
 english_file_path = os.path.join(base_dir, 'names.txt')
