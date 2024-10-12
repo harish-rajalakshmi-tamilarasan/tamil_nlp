@@ -5,7 +5,7 @@ st.title("Tamil Name Generator")
 
 tamil_chars = [
     '.', 'அ', 'ஆ', 'இ', 'ஈ', 'உ', 'ஊ', 'எ', 'ஏ', 'ஐ', 'ஒ', 'ஓ', 'ஔ', 
-    'க', 'ச','ஞ', 'ட', 'த', 'ந', 'ப', 'ம', 'ய', 'ர', 'ல', 'வ'
+    'க', 'ச','ஞ', 'த', 'ந', 'ப', 'ம', 'ய', 'ர', 'ல', 'வ'
 ]
 if 'selected_char' not in st.session_state:
     st.session_state.selected_char = '.' 
