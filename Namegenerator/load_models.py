@@ -3,8 +3,10 @@ from rnn_model import NameGeneratorRNNModel, vocab_size, hidden_size, num_layers
 from lstm_model import NameGeneratorLSTMModel
 from gru_model import NameGeneratorGRUModel
 from dataset_utils import tamil_names
+import os
 
-
+current_dir = os.path.dirname(__file__)
+base_dir = os.path.join(current_dir, 'models')
 
 def generate(model,start_str='.',iterations=20,names = tamil_names):
     new_names = []
@@ -32,20 +34,23 @@ def generate(model,start_str='.',iterations=20,names = tamil_names):
 def generate_rnn(start_str='.', iterations=20):
     print("start_str=",start_str)
     model = NameGeneratorRNNModel(vocab_size, embedding_dim, hidden_size, output_size, num_layers)
-    model.load_state_dict(torch.load('models\\rnn_model.pth'))
+    model_path = os.path.join(base_dir, 'rnn_model.pth')
+    model.load_state_dict(torch.load(model_path))
     model.eval()
     return generate(model,start_str,iterations)
 
 def generate_lstm(start_str='.', iterations=20):
     model = NameGeneratorLSTMModel(vocab_size, embedding_dim, hidden_size, output_size, num_layers)
-    model.load_state_dict(torch.load('models\\lstm_model.pth'))
+    model_path = os.path.join(base_dir, 'lstm_model.pth')
+    model.load_state_dict(torch.load(model_path))
     model.eval()
     return generate(model,start_str,iterations)
 
 
 def generate_gru(start_str='.', iterations=20):
     model = NameGeneratorGRUModel(vocab_size, embedding_dim, hidden_size, output_size, num_layers)
-    model.load_state_dict(torch.load('models\\gru_model.pth'))
+    model_path = os.path.join(base_dir, 'gru_model.pth')
+    model.load_state_dict(torch.load(model_path))
     model.eval()
     return generate(model,start_str,iterations)
 
