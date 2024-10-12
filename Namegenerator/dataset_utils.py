@@ -2,7 +2,8 @@ import torch
 import numpy as np
 from torch.utils.data import DataLoader, Dataset, random_split
 import matplotlib.pyplot as plt
-from torch.nn.utils.rnn import pad_sequence,pack_padded_sequence, pad_packed_sequence
+from torch.nn.utils.rnn import pad_sequence
+import os
 
 class NamesDataset(Dataset):
     def __init__(self, names_list):
@@ -50,9 +51,10 @@ def get_dataset(batch_sizes,data="tamil"):
     train_loader, val_loader = get_train_test_dataset(batch_sizes, dataset)
     return dataset, train_loader, val_loader
 
-male_file_path = r'dataset\\tamil_males.txt'
-female_file_path = r'dataset\\female_names.txt'
-english_file_path = r'dataset\\names.txt'
+base_dir = 'dataset'
+male_file_path = os.path.join(base_dir, 'tamil_males.txt')
+female_file_path = os.path.join(base_dir, 'female_names.txt')
+english_file_path = os.path.join(base_dir, 'names.txt')
 
 tamil_male_names = parse_names(male_file_path)
 tamil_female_names = parse_names(female_file_path)
